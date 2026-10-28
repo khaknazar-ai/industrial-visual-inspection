@@ -76,5 +76,6 @@ an MVTec AD2 evaluation.
 
 These results are exploratory, not independent production qualification. The
 bottle MVTec set was reused, and results on one dataset do not establish
-performance on other products. Images and weights are not included in this
-source repository. Third-party dataset and model terms apply.
+performance on other products. The repository contains two illustrative input
+images and corresponding screenshots; full datasets and model weights are not
+included. Third-party dataset and model terms apply.
