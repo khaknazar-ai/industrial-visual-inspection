@@ -56,6 +56,22 @@ physical-item and session independence of these splits is not established.
 The above operating points have high false-positive rates and are not reliable
 automatic acceptance settings. Scores are not probabilities.
 
+## SuperADD on MVTec LOCO
+
+The local SuperADD runtime was evaluated on the held-out `splicing_connectors`
+test split: 312 images, including 119 normal and 193 anomalous images. The
+image threshold was selected on validation data and fixed at 0.5 in the
+normalized score space.
+
+| Image AUROC | Average precision | F1 | Defect recall | Normal false-positive rate |
+|---:|---:|---:|---:|---:|
+| 0.758 | 0.855 | 0.673 | 55.4% | 15.1% |
+
+At this threshold, 107 defects were detected, 86 were missed, 101 normal images
+were accepted and 18 were falsely flagged. This is an exploratory result on
+one LOCO category, not a reproduction of official high-resolution SuperADD or
+an MVTec AD2 evaluation.
+
 ## Scope
 
 These results are exploratory, not independent production qualification. The
