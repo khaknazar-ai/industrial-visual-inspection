@@ -1,0 +1,10 @@
+name: classical_diff
+model_id: classical-diff-v1
+parameters:
+  align: true
+  normalize_illumination: true
+  blur_kernel: 5
+  pixel_threshold: 0.10
+  morphology_kernel: 3
+  min_component_area: 12
+  top_k_fraction: 0.01

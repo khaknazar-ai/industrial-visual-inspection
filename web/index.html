@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Quality Check | Industrial Vision</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">IV</div>
+    <div>
+      <p class="eyebrow">INDUSTRIAL VISION</p>
+      <h1>Inspection desk</h1>
+    </div>
+    <div class="system-state" id="system-state" data-state="loading">
+      <span class="state-dot" aria-hidden="true"></span>
+      <span id="system-state-text">Checking system…</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow" id="profile-label">VISUAL INSPECTION</p>
+        <h2 id="page-title">Inspect a part</h2>
+        <p class="intro-copy">One part, photographed under your usual inspection conditions.</p>
+        <p class="hint" id="calibration-status">Loading calibration status…</p>
+      </div>
+      <div class="model-pill"><span id="model-profile">Loading model…</span></div>
+    </section>
+
+    <section class="workspace-grid">
+      <div class="upload-column">
+        <div class="card upload-card" id="drop-zone" tabindex="0" role="button" aria-label="Upload an image">
+          <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+          <h3>Image</h3>
+          <p>Drop a photo here or choose a file.</p>
+          <button class="primary-button" id="choose-button" type="button">Choose image</button>
+          <p class="hint" id="upload-hint">Loading upload limits…</p>
+        </div>
+
+        <details class="result-key">
+          <summary>Result labels</summary>
+          <p><strong>PASS</strong> — below the review threshold.</p>
+          <p><strong>REVIEW</strong> — uncertain result, image quality issue or model error.</p>
+          <p><strong>FAIL</strong> — at or above the fail threshold.</p>
+        </details>
+      </div>
+
+      <section class="card results-card" aria-live="polite">
+        <div class="results-empty" id="results-empty">
+          <h3>No image selected</h3>
+          <p>The inspection view will appear here.</p>
+        </div>
+
+        <div class="results-loading hidden" id="results-loading">
+          <div class="spinner" aria-hidden="true"></div>
+          <h3>Inspecting…</h3>
+        </div>
+
+        <div class="results-content hidden" id="results-content">
+          <div class="verdict-header" id="verdict-header">
+            <div class="verdict-icon" id="verdict-icon" aria-hidden="true">✓</div>
+            <div><p class="eyebrow">INSPECTION RESULT</p><h3 id="verdict-title">Looks normal</h3><p id="verdict-subtitle">No clear visual difference was found.</p></div>
+          </div>
+          <div class="score-panel">
+            <div class="score-label"><span id="score-label">Anomaly score</span><span class="info-label" id="score-note">Not a probability</span></div>
+            <div class="score-line"><strong id="score-value">—</strong><span id="threshold-value">Thresholds unavailable</span></div>
+            <div class="score-track" id="score-track"><span id="score-fill"></span><i id="score-marker"></i></div>
+            <p class="hint score-scale" id="score-scale"></p>
+          </div>
+          <div class="image-viewer">
+            <div class="viewer-top"><h4>Inspection view</h4><div class="view-tabs" role="group" aria-label="Inspection views"><button type="button" class="view-tab active" data-view="overlay" aria-pressed="true">Findings</button><button type="button" class="view-tab" data-view="original" aria-pressed="false">Original</button><button type="button" class="view-tab" data-view="heatmap" aria-pressed="false">Heatmap</button></div></div>
+            <div class="image-frame"><img id="result-image" alt="Inspection result"><div id="image-placeholder" class="image-placeholder">No preview available</div></div>
+          </div>
+          <div class="findings" id="findings"></div>
+          <details class="technical-details"><summary>Technical details</summary><dl><div><dt>Category</dt><dd id="detail-category">—</dd></div><div><dt>Processing time</dt><dd id="detail-time">—</dd></div><div><dt>Request ID</dt><dd id="detail-request">—</dd></div></dl></details>
+          <button class="secondary-button" id="new-check-button" type="button">Check another image</button>
+        </div>
+        <div class="error-box hidden" id="error-box" role="alert"></div>
+      </section>
+    </section>
+  </main>
+  <footer class="footer"><span>Industrial Vision</span><span>For operator review. Follow your normal acceptance process.</span></footer>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+dataset: synthetic_industrial
+category: assembly
+root: data/fixtures/synthetic
+manifest: data/fixtures/synthetic/manifest.csv
+generator:
+  seed: 42
+  image_size: [256, 256]
+  train_normal: 8
+  validation_normal: 4
+  validation_anomaly: 4
+  test_normal: 6
+  test_anomaly: 6

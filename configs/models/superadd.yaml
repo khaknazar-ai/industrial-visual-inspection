@@ -1,0 +1,16 @@
+name: superadd
+provider: anomalib
+status: technical_demo_runner
+parameters:
+  backbone: vit_small_patch16_dinov3.lvd1689m
+  backbone_weights: models/external/dinov3-vit-small-patch16-timm/model.safetensors
+  image_size: [256, 256]
+  patch_size: 256
+  patch_overlap: 32
+  layers: [3, 5, 8, 10]
+  max_database_size: 4096
+  subsampling_iterations: 100
+  gaussian_blur_sigma: 4.0
+  score_quantile: 0.001
+  calibration: normal_validation_percentile
+  automatic_weight_download: false

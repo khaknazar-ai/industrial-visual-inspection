@@ -1,0 +1,27 @@
+# Optional provider-neutral CUDA image. Override BASE_IMAGE when the cloud
+# provider supplies a tested CUDA/Torch image.
+ARG BASE_IMAGE=pytorch/pytorch:2.6.0-cuda12.6-cudnn9-runtime
+FROM ${BASE_IMAGE}
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    II_CLOUD_ROOT=/workspace/industrial-visual-inspection \
+    II_PROJECT_ROOT=/workspace/industrial-visual-inspection \
+    II_DATASET_ROOT=/workspace/assets/datasets \
+    II_MODEL_ROOT=/workspace/assets/models \
+    II_ARTIFACT_ROOT=/workspace/assets/artifacts/industrial-visual-inspection \
+    HF_HOME=/workspace/assets/cache/huggingface \
+    TORCH_HOME=/workspace/assets/cache/torch \
+    PIP_CACHE_DIR=/workspace/assets/cache/pip
+
+WORKDIR /workspace/industrial-visual-inspection
+COPY pyproject.toml setup.py MANIFEST.in README.md requirements-gpu.txt requirements-efficientad.txt ./
+COPY src/industrial_inspection ./src/industrial_inspection
+COPY configs ./configs
+COPY scripts ./scripts
+COPY web ./web
+
+RUN python -m pip install --upgrade pip \
+    && python -m pip install -r requirements-gpu.txt
+
+CMD ["python", "scripts/cloud_gpu_preflight.py", "--root", "/workspace/industrial-visual-inspection", "--require-cuda", "--require-anomalib"]

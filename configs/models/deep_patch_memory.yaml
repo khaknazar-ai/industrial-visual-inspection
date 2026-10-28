@@ -1,0 +1,14 @@
+name: deep_patch_memory
+model_id: deep-patch-memory-v1
+parameters:
+  image_size: [256, 256]
+  backbone: resnet18
+  layers: [layer2, layer3]
+  coreset_ratio: 0.10
+  max_memory_vectors: 10000
+  query_chunk_size: 2048
+  memory_chunk_size: 4096
+  dtype: float32
+  seed: 42
+  device: auto
+  pretrained: true

@@ -1,0 +1,40 @@
+project:
+  name: industrial-visual-inspection
+  root: .
+
+storage:
+  dataset_root: data/external
+  model_root: models
+  artifact_root: reports/runtime
+
+data:
+  dataset: synthetic_industrial
+  category: assembly
+  image_size: [256, 256]
+
+model:
+  name: classical_diff
+  model_id: classical-diff-v1
+  parameters:
+    align: true
+    normalize_illumination: true
+    blur_kernel: 5
+    pixel_threshold: 0.10
+    morphology_kernel: 3
+    min_component_area: 12
+    top_k_fraction: 0.01
+
+evaluation:
+  pass_threshold: null
+  fail_threshold: null
+  optimize_metric: f1
+  normal_pass_quantile: 0.95
+  bootstrap_samples: 500
+
+runtime:
+  device: auto
+  num_workers: 0
+  seed: 42
+  max_image_bytes: 12582912
+  max_image_pixels: 16777216
+  max_batch_size: 8

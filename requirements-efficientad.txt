@@ -1,0 +1,7 @@
+# Optional P09 target stack; Lightning 2.6.6 includes reviewed checkpoint security fixes.
+# Historical CPU results used 2.6.5; the updated runtime still requires qualification.
+# Choose the appropriate PyTorch wheel source for the target machine.
+anomalib==2.6.0
+lightning==2.6.6
+torch==2.8.0
+torchvision==0.23.0

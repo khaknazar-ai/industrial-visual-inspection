@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "industrial-visual-inspection"
+version = "0.1.0"
+description = "Open-set industrial visual inspection with auditable PASS/REVIEW/FAIL decisions"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+authors = [{ name = "Industrial Inspection Project" }]
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "Pillow>=10.0",
+  "opencv-python-headless>=4.8",
+  "PyYAML>=6.0",
+  "pydantic>=2.6",
+  "scikit-learn>=1.4",
+  "scipy>=1.11",
+  "psutil>=5.9",
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+deep = ["torch>=2.2", "torchvision>=0.17", "anomalib>=2.6,<3", "safetensors>=0.4"]
+
+[project.scripts]
+industrial-inspection = "industrial_inspection.cli:main"
+industrial-inspection-loco-demo = "industrial_inspection.loco_demo:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

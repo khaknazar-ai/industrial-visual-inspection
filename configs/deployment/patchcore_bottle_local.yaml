@@ -1,0 +1,31 @@
+project:
+  name: industrial-visual-inspection
+  root: .
+
+storage:
+  dataset_root: data/external
+  model_root: models
+  artifact_root: reports/runtime
+
+data:
+  dataset: mvtec_ad
+  category: bottle
+  image_size: [256, 256]
+
+model:
+  name: patchcore
+  model_id: patchcore-bottle-exp0005-contract-v2
+  parameters: {}
+
+evaluation:
+  optimize_metric: f1
+  normal_pass_quantile: 0.95
+  bootstrap_samples: 500
+
+runtime:
+  device: auto
+  num_workers: 0
+  seed: 42
+  max_image_bytes: 12582912
+  max_image_pixels: 16777216
+  max_batch_size: 8

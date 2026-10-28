@@ -1,0 +1,7 @@
+optimize_metric: f1
+normal_pass_quantile: 0.95
+bootstrap_samples: 500
+bootstrap_confidence: 0.95
+threshold_source: validation_only
+latency_warmup: 5
+latency_runs: 100

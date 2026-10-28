@@ -1,0 +1,15 @@
+name: dino_memory
+model_id: dinov3-small-bottle-v1
+# Licensed local timm conversion; no automatic download or encoder training.
+# Run from the project root, or supply an absolute encoder_weights path.
+parameters:
+  encoder_weights: models/external/dinov3-vit-small-patch16-timm/model.safetensors
+  image_size: [256, 256]
+  coreset_ratio: 0.1
+  max_memory_vectors: 4096
+  distance_chunk_size: 256
+  memory_chunk_size: 1024
+  fit_chunk_size: 256
+  dtype: float16
+  seed: 42
+  device: cpu

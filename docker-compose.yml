@@ -1,0 +1,23 @@
+services:
+  inspection-api:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      II_PROJECT_ROOT: /app
+      II_ARTIFACT_ROOT: /app/reports/runtime
+      II_MODEL_ROOT: /app/models
+      II_MODEL_ID: ${II_MODEL_ID:-classical-diff-v1}
+      II_DEVICE: cpu
+    volumes:
+      - ./reports/runtime:/app/reports/runtime
+      - ./models:/app/models:ro
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json, urllib.request; r = json.load(urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=3)); raise SystemExit(0 if r['ready'] else 1)"
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

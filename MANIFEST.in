@@ -1,0 +1,2 @@
+recursive-include configs *.yaml
+recursive-include web *.html *.js *.css

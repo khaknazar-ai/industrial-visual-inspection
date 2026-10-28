@@ -1,0 +1,39 @@
+# Cloud GPU profile. Keep large immutable assets outside the repository.
+# Override these values when a provider mounts a different volume.
+project:
+  name: industrial-visual-inspection-cloud
+  root: /workspace/industrial-visual-inspection
+
+storage:
+  dataset_root: /workspace/assets/datasets
+  model_root: /workspace/assets/models
+  artifact_root: /workspace/assets/artifacts/industrial-visual-inspection
+
+data:
+  dataset: mvtec_ad
+  category: bottle
+  image_size: [256, 256]
+
+model:
+  name: patchcore
+  model_id: patchcore-mvtec-bottle-gpu-v1
+  parameters:
+    backbone: wide_resnet50_2
+    layers: [layer2, layer3]
+    coreset_sampling_ratio: 0.1
+    memory_bank_device: cpu
+
+evaluation:
+  pass_threshold: null
+  fail_threshold: null
+  optimize_metric: f1
+  normal_pass_quantile: 0.95
+  bootstrap_samples: 1000
+
+runtime:
+  device: cuda
+  num_workers: 2
+  seed: 42
+  max_image_bytes: 12582912
+  max_image_pixels: 16777216
+  max_batch_size: 8

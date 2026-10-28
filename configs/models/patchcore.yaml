@@ -1,0 +1,8 @@
+name: patchcore
+provider: anomalib
+status: optional_dependency
+parameters:
+  input_size: [256, 256]
+  backbone: wide_resnet50_2
+  coreset_sampling_ratio: 0.1
+  memory_bank_device: cpu

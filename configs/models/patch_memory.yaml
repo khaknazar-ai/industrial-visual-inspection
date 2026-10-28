@@ -1,0 +1,10 @@
+name: patch_memory
+model_id: educational-patch-memory-v1
+parameters:
+  image_size: [256, 256]
+  patch_size: 16
+  stride: 8
+  coreset_ratio: 0.25
+  max_memory_vectors: 10000
+  distance_chunk_size: 1024
+  seed: 42

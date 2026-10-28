@@ -1,0 +1,4 @@
+# Install this file inside the cloud GPU instance only.
+# Do not use it to replace a provider's CUDA-enabled torch wheel blindly.
+--editable .[dev]
+anomalib>=2.4,<3
